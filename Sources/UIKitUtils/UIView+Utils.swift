@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-extension UIView {
+public extension UIView {
     var parentViewController: UIViewController? {
         sequence(first: self) { $0.next }
             .first(where: { $0 is UIViewController })
@@ -16,13 +16,13 @@ extension UIView {
     }
 }
 
-extension UIColor {
+public extension UIColor {
     static var accentColor: UIColor {
         UIColor(Color.accentColor)
     }
 }
 
-extension UIListContentConfiguration {
+public extension UIListContentConfiguration {
     static func compactibleProminentInsetGroupedHeader() -> UIListContentConfiguration {
         if #available(iOS 15.0, *) {
             return .prominentInsetGroupedHeader()
@@ -32,7 +32,7 @@ extension UIListContentConfiguration {
     }
 }
 
-extension UIView {
+public extension UIView {
     func subviews<T: UIView>(ofType WhatType: T.Type) -> [T] {
         var result = subviews.compactMap { $0 as? T }
         
