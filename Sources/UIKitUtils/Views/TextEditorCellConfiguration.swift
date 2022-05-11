@@ -8,6 +8,7 @@
 import UIKit
 import TwitterTextEditor
 import DiffableList
+import SnapKit
 
 public struct TextEditorCellConfiguration: UIContentConfiguration {
     var text: String?
@@ -71,13 +72,10 @@ private extension TextEditorCellConfiguration.View {
         
         let config = configuration as! Config
 
-        textEditor.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            textEditor.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            textEditor.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            textEditor.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8),
-            textEditor.heightAnchor.constraint(equalToConstant: config.height)
-        ])
+        textEditor.snp.makeConstraints { mk in
+            mk.top.leading.trailing.bottom.equalToSuperview().inset(8)
+            mk.height.equalTo(config.height)
+        }
     }
     
     func apply() {
