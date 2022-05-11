@@ -9,6 +9,22 @@ import UIKit
 import SwiftUI
 
 public extension UIView {
+    static func makeDoneButton(inputView: UIView) -> UIToolbar {
+        let toolBar = UIToolbar()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                        target: nil, action: nil)
+        let doneButton = UIBarButtonItem(systemItem: .done, primaryAction: .init { [weak inputView]  _ in
+            inputView?.endEditing(false)
+        })
+        
+        toolBar.setItems([flexSpace, doneButton], animated: true)
+        toolBar.sizeToFit()
+        
+        return toolBar
+    }
+}
+
+public extension UIView {
     var parentViewController: UIViewController? {
         sequence(first: self) { $0.next }
             .first(where: { $0 is UIViewController })
