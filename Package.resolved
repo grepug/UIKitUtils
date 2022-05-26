@@ -1,0 +1,41 @@
+{
+  "pins" : [
+    {
+      "identity" : "diffablelist",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/grepug/DiffableList",
+      "state" : {
+        "branch" : "dev_3.0",
+        "revision" : "60977d6930969c4587f07faec58f117ef332aa69"
+      }
+    },
+    {
+      "identity" : "menubuilder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/grepug/MenuBuilder",
+      "state" : {
+        "branch" : "master",
+        "revision" : "09d0d0dee53e2724586caadbcb9026e1a458dc51"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit.git",
+      "state" : {
+        "revision" : "f222cbdf325885926566172f6f5f06af95473158",
+        "version" : "5.6.0"
+      }
+    },
+    {
+      "identity" : "twittertexteditor",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/twitter/TwitterTextEditor",
+      "state" : {
+        "branch" : "master",
+        "revision" : "940dc091fbe51ef6cb267b9bff80d4148cdf345a"
+      }
+    }
+  ],
+  "version" : 2
+}
