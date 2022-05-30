@@ -129,7 +129,7 @@ public extension DLContentConfiguration {
     static func textEditor(text: String?,
                            placeholder: String?,
                            height: CGFloat = 240,
-                           backgroundColor: UIColor?,
+                           backgroundColor: UIColor? = nil,
                            disabled: Bool = false,
                            action: ((String) -> Void)? = nil) -> Self {
         .init(contentConfiguration: TextEditorCellConfiguration(text: text,
