@@ -14,6 +14,7 @@ public struct TextEditorCellConfiguration: UIContentConfiguration {
     var text: String?
     var ph: String?
     var height: CGFloat
+    var backgroundColor: UIColor?
     var disabled: Bool?
     var action: ((String) -> Void)?
     
@@ -86,6 +87,10 @@ private extension TextEditorCellConfiguration.View {
         textEditor.isEditable = config.disabled != true
         textEditor.isSelectable = config.disabled != true
         textEditor.textColor = config.disabled == true ? .secondaryLabel : .label
+        
+        if let bgColor = config.backgroundColor {
+            textEditor.backgroundColor = bgColor
+        }
     }
 }
 
@@ -121,7 +126,17 @@ extension TextEditorView {
 }
 
 public extension DLContentConfiguration {
-    static func textEditor(text: String?, placeholder: String?, height: CGFloat = 240, disabled: Bool = false, action: ((String) -> Void)? = nil) -> Self {
-        .init(contentConfiguration: TextEditorCellConfiguration(text: text, ph: placeholder, height: height, disabled: disabled, action: action))
+    static func textEditor(text: String?,
+                           placeholder: String?,
+                           height: CGFloat = 240,
+                           backgroundColor: UIColor?,
+                           disabled: Bool = false,
+                           action: ((String) -> Void)? = nil) -> Self {
+        .init(contentConfiguration: TextEditorCellConfiguration(text: text,
+                                                                ph: placeholder,
+                                                                height: height,
+                                                                backgroundColor: backgroundColor,
+                                                                disabled: disabled,
+                                                                action: action))
     }
 }
