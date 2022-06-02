@@ -16,3 +16,9 @@ extension String {
         String(format: NSLocalizedString(self, bundle: .module, comment: ""), string)
     }
 }
+
+public extension Optional where Wrapped == String {
+    var isEmpty: Bool {
+        map { $0.isEmpty } ?? true
+    }
+}
