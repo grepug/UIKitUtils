@@ -147,6 +147,18 @@ public extension UIViewController {
     }
 }
 
+public extension UIViewController {
+    func makeDoneButton(action: @escaping () -> Void) -> UIBarButtonItem {
+        .init(systemItem: .done, primaryAction: .init { [unowned self] _ in
+            view.endEditing(true)
+            
+            DispatchQueue.main.async {
+                action()
+            }
+        })
+    }
+}
+
 extension Publisher {
     func index(_ initial: Self.Output) -> AnyPublisher<(Self.Output, Int), Self.Failure> {
         scan((initial, -1)) { prev, cur in
