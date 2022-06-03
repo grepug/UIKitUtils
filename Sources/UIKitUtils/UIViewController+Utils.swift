@@ -27,8 +27,8 @@ public extension UIViewController {
 }
 
 public extension UIViewController {
-    func presentAlertController(title: String?, message: String?, alignment: UIAlertController.AlertMessageAlignmentConfig? = nil, actions: [UIAlertAction]) {
-        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    func presentAlertController(title: String?, message: String?, alignment: UIAlertController.AlertMessageAlignmentConfig? = nil, style: UIAlertController.Style = .alert, actions: [UIAlertAction]) {
+        let ac = UIAlertController(title: title, message: message, preferredStyle: style)
         
         if let config = alignment {
             ac.setMessageAlignment(config)
