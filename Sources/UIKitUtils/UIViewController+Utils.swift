@@ -27,7 +27,12 @@ public extension UIViewController {
 }
 
 public extension UIViewController {
-    func presentAlertController(title: String?, message: String?, alignment: UIAlertController.AlertMessageAlignmentConfig? = nil, style: UIAlertController.Style = .alert, actions: [UIAlertAction]) {
+    func presentAlertController(title: String?,
+                                message: String?,
+                                alignment: UIAlertController.AlertMessageAlignmentConfig? = nil,
+                                style: UIAlertController.Style = .alert,
+                                barButtonItem: UIBarButtonItem? = nil,
+                                actions: [UIAlertAction]) {
         let ac = UIAlertController(title: title, message: message, preferredStyle: style)
         
         if let config = alignment {
@@ -35,6 +40,8 @@ public extension UIViewController {
         }
         
         actions.forEach { ac.addAction($0) }
+        
+        ac.popoverPresentationController?.barButtonItem = barButtonItem
         
         present(ac, animated: true)
     }
