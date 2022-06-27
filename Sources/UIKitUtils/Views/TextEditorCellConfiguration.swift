@@ -16,6 +16,7 @@ public struct TextEditorCellConfiguration: UIContentConfiguration {
     var height: CGFloat
     var backgroundColor: UIColor?
     var disabled: Bool?
+    var maximumNumberOfLinesForPlaceholderText = 0
     var action: ((String) -> Void)?
     
     public func makeContentView() -> UIView & UIContentView {
@@ -67,7 +68,7 @@ private extension TextEditorCellConfiguration.View {
         textEditor.editingContentDelegate = self
         textEditor.font = .preferredFont(forTextStyle: .body)
         textEditor.placeholderTextColor = .placeholderText
-        textEditor.maximumNumberOfLinesForPlaceholderText = 2
+        textEditor.maximumNumberOfLinesForPlaceholderText = 0
         textEditor.scrollView.alwaysBounceVertical = false
         textEditor.addDoneButton()
         
@@ -131,12 +132,15 @@ public extension DLContentConfiguration {
                            height: CGFloat = 240,
                            backgroundColor: UIColor? = nil,
                            disabled: Bool = false,
+                           maximumNumberOfLinesForPlaceholderText: Int = 0,
                            action: ((String) -> Void)? = nil) -> Self {
-        .init(contentConfiguration: TextEditorCellConfiguration(text: text,
-                                                                ph: placeholder,
-                                                                height: height,
-                                                                backgroundColor: backgroundColor,
-                                                                disabled: disabled,
-                                                                action: action))
+        .init(contentConfiguration:
+                TextEditorCellConfiguration(text: text,
+                                            ph: placeholder,
+                                            height: height,
+                                            backgroundColor: backgroundColor,
+                                            disabled: disabled,
+                                            maximumNumberOfLinesForPlaceholderText: maximumNumberOfLinesForPlaceholderText,
+                                            action: action))
     }
 }
