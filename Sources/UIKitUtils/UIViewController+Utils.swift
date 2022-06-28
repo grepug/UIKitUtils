@@ -35,9 +35,11 @@ public extension UIViewController {
                                 actions: [UIAlertAction]) {
         let ac = UIAlertController(title: title, message: message, preferredStyle: style)
         
+        #if !targetEnvironment(macCatalyst)
         if let config = alignment {
             ac.setMessageAlignment(config)
         }
+        #endif
         
         actions.forEach { ac.addAction($0) }
         
