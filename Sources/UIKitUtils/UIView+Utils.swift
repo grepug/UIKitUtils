@@ -74,7 +74,7 @@ public extension UIView {
     }
 }
 
-extension UIView {
+public extension UIView {
     var collectionViewCell: UICollectionViewCell? {
         if let cell = self as? UICollectionViewCell {
             return cell
