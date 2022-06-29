@@ -73,3 +73,17 @@ public extension UIView {
             subviews(ofType: UITextView.self).first { $0.isFirstResponder }
     }
 }
+
+extension UIView {
+    var collectionViewCell: UICollectionViewCell? {
+        if let cell = self as? UICollectionViewCell {
+            return cell
+        }
+        
+        if let superView = self.superview {
+            return superView.collectionViewCell
+        }
+        
+        return nil
+    }
+}
