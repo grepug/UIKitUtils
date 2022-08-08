@@ -178,10 +178,18 @@ public extension UIViewController {
             }
         })
     }
+    
+    func makeDoneButton(action: @escaping () async -> Void) -> UIBarButtonItem {
+        makeDoneButton {
+            Task {
+                await action()
+            }
+        }
+    }
 }
 
 public extension UIBarButtonItem {
-    func makeDoneButton(on vc: UIViewController, action: @escaping () -> Void) -> UIBarButtonItem {
+    static func makeDoneButton(on vc: UIViewController, action: @escaping () -> Void) -> UIBarButtonItem {
         .init(systemItem: .done, primaryAction: .init { [unowned vc] _ in
             vc.view.endEditing(true)
             
@@ -191,7 +199,7 @@ public extension UIBarButtonItem {
         })
     }
     
-    func makeDoneButton(on vc: UIViewController, action: @escaping () async -> Void) -> UIBarButtonItem {
+    static func makeDoneButton(on vc: UIViewController, action: @escaping () async -> Void) -> UIBarButtonItem {
         makeDoneButton(on: vc) {
             Task {
                 await action()
