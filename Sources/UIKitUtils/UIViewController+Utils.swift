@@ -50,24 +50,36 @@ public extension UIViewController {
 }
 
 public extension UIAlertAction {
+    static var cancelLocaizableString: String {
+        "action_cancel".loc
+    }
+    
+    static var deleteLocalizableString: String {
+        "action_discard".loc
+    }
+    
+    static var okLocalizableString: String {
+        "action_ok".loc
+    }
+    
     static var cancel: UIAlertAction {
-        .init(title: "action_cancel".loc, style: .cancel)
+        .init(title: Self.cancelLocaizableString, style: .cancel)
     }
     
     static func cancel(action: @escaping () -> Void) -> UIAlertAction {
-        .init(title: "action_cancel".loc, style: .cancel, handler: { _ in
+        .init(title: Self.cancelLocaizableString, style: .cancel, handler: { _ in
             action()
         })
     }
     
     static func delete(action: @escaping () -> Void) -> UIAlertAction {
-        .init(title: "action_discard".loc, style: .destructive, handler: { _ in
+        .init(title: Self.deleteLocalizableString, style: .destructive, handler: { _ in
             action()
         })
     }
     
     static func ok(style: UIAlertAction.Style = .default, action: (() -> Void)? = nil) -> UIAlertAction {
-        .init(title: "action_ok".loc, style: style, handler: { _ in
+        .init(title: Self.okLocalizableString, style: style, handler: { _ in
             action?()
         })
     }
@@ -177,6 +189,14 @@ public extension UIBarButtonItem {
                 action()
             }
         })
+    }
+    
+    func makeDoneButton(on vc: UIViewController, action: @escaping () async -> Void) -> UIBarButtonItem {
+        makeDoneButton(on: vc) {
+            Task {
+                await action()
+            }
+        }
     }
 }
 
