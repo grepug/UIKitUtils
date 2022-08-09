@@ -47,6 +47,48 @@ public extension UIViewController {
         
         present(ac, animated: true)
     }
+    
+    struct ActionValue: Identifiable {
+        public init(title: String, style: UIAlertAction.Style) {
+            self.title = title
+            self.style = style
+        }
+        
+        var title: String
+        var style: UIAlertAction.Style
+        
+        public var id: String {
+            title
+        }
+        
+        func alertAction(handler: @escaping () -> Void) -> UIAlertAction {
+            .init(title: title, style: style, handler: { _ in handler() })
+        }
+        
+        public static let cancel: Self = .init(title: "action_cancel".loc, style: .cancel)
+        public static let ok: Self = .init(title: "action_ok".loc, style: .default)
+        public static let delete: Self = .init(title: "action_discard".loc, style: .destructive)
+    }
+    
+    func presentAlertController(title: String?,
+                                message: String?,
+                                alignment: UIAlertController.AlertMessageAlignmentConfig? = nil,
+                                style: UIAlertController.Style = .alert,
+                                barButtonItem: UIBarButtonItem? = nil,
+                                actions: [ActionValue]) async -> ActionValue {
+        await withCheckedContinuation { [unowned self] continuation in
+            DispatchQueue.main.async { [unowned self] in
+                presentAlertController(title: title,
+                                       message: message,
+                                       alignment: alignment,
+                                       style: style,
+                                       barButtonItem: barButtonItem,
+                                       actions: actions.map { action in action.alertAction {
+                    continuation.resume(returning: action)
+                }})
+            }
+        }
+    }
 }
 
 public extension UIAlertAction {
