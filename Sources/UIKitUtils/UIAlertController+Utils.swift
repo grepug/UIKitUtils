@@ -52,9 +52,9 @@ public extension UIViewController {
             .init(title: title, style: style, handler: { _ in handler() })
         }
         
-        public static let cancel: Self = .init(title: "action_cancel".loc, style: .cancel)
-        public static let ok: Self = .init(title: "action_ok".loc, style: .default)
-        public static let delete: Self = .init(title: "action_discard".loc, style: .destructive)
+        public static let cancel: Self = .init(id: "cancel", title: "action_cancel".loc, style: .cancel)
+        public static let ok: Self = .init(id: "ok", title: "action_ok".loc, style: .default)
+        public static let delete: Self = .init(id: "delete", title: "action_discard".loc, style: .destructive)
     }
     
     func presentAlertController(title: String?,
