@@ -44,6 +44,10 @@ public extension UIViewController {
             lhs.id == rhs.id
         }
         
+        public static func ~= (lhs: Self, rhs: Self) -> Bool {
+            lhs.id == rhs.id
+        }
+        
         func alertAction(handler: @escaping () -> Void) -> UIAlertAction {
             .init(title: title, style: style, handler: { _ in handler() })
         }
