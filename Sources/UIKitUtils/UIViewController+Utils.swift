@@ -140,7 +140,7 @@ public extension UIBarButtonItem {
         })
     }
     
-    static func makeDoneButton(on vc: UIViewController, action: @escaping () async -> Void) -> UIBarButtonItem {
+    static func makeDoneButton(on vc: UIViewController, action: @MainActor @escaping () async -> Void) -> UIBarButtonItem {
         makeDoneButton(on: vc) {
             Task {
                 await action()
