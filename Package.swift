@@ -18,7 +18,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/grepug/DiffableList", branch: "dev_3.1.0"),
+        .package(url: "https://github.com/grepug/DiffableList", branch: "dev_3.3.7"),
         .package(url: "https://github.com/grepug/MenuBuilder", branch: "master"),
         .package(url: "https://github.com/SnapKit/SnapKit.git", .upToNextMajor(from: "5.0.1")),
         .package(url: "https://github.com/twitter/TwitterTextEditor", branch: "master"),
