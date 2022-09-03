@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/grepug/DiffableList",
       "state" : {
-        "branch" : "dev_3.1.0",
-        "revision" : "96fc12b8730395420e7742c639011b2daab3dde9"
+        "branch" : "dev_3.3.7",
+        "revision" : "c25b08e44ba27e844d90c9d63021d3d60b663d0e"
       }
     },
     {

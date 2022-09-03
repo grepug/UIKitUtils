@@ -62,10 +62,20 @@ public extension UIViewController {
                                 alignment: UIAlertController.AlertMessageAlignmentConfig? = nil,
                                 style: UIAlertController.Style = .alert,
                                 barButtonItem: UIBarButtonItem? = nil,
-                                actions: [ActionValue]) async -> ActionValue {
-        await withCheckedContinuation { [unowned self] continuation in
-            DispatchQueue.main.async { [unowned self] in
-                presentAlertController(title: title,
+                                actions: [ActionValue]) async -> ActionValue? {
+        await withCheckedContinuation { [weak self] continuation in
+            guard let self = self else {
+                continuation.resume(returning: nil)
+                return
+            }
+            
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else {
+                    continuation.resume(returning: nil)
+                    return
+                }
+                
+                self.presentAlertController(title: title,
                                        message: message,
                                        alignment: alignment,
                                        style: style,
